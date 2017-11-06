@@ -23,5 +23,6 @@ protected:
 	aie::Font*			m_font;
 
 	float m_cameraX, m_cameraY;
+	float mPx, mPy;
 	float m_timer;
 };
