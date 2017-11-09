@@ -7,6 +7,8 @@ private:
 	float mPy;
 	int mLives;
 public:
+	Tank();
+	~Tank();
 	Tank(float x, float y);
 	bool CheckLives();
 	int LifeCounter();

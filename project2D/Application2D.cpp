@@ -3,6 +3,7 @@
 #include "Font.h"
 #include "Input.h"
 #include "Tank.h"
+#include "Rocket.h"
 
 Application2D::Application2D() {
 
@@ -25,6 +26,7 @@ bool Application2D::startup() {
 	m_cameraY = 0;
 	mPx = 650;
 	mPy = 40;
+	mY = 40;
 	m_timer = 0;
 
 	return true;
@@ -58,12 +60,16 @@ void Application2D::update(float deltaTime) {
 	if (input->isKeyDown(aie::INPUT_KEY_D))
 		mPx += 550.0f * deltaTime;
 
+	if (input->wasKeyReleased(aie::INPUT_KEY_E));
+		mY += 700.0f * deltaTime;
+
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
 }
 
-void Application2D::draw() {
+void Application2D::draw() 
+{
 
 	// wipe the screen to the background colour
 	clearScreen();
@@ -75,6 +81,7 @@ void Application2D::draw() {
 	m_2dRenderer->begin();
 
 	Tank tank(mPx, mPy);
+	Rocket rocket(mPx, mY);
 
 
 	//// demonstrate animation
@@ -96,6 +103,10 @@ void Application2D::draw() {
 	m_2dRenderer->setRenderColour(0, 1, 0, 1);
 	m_2dRenderer->drawBox(mPx, mPy, 80, 40, 0);
 
+	//draw rocket
+	m_2dRenderer->setRenderColour(1, 1, 1, 1);
+	m_2dRenderer->drawBox(mPx, mY, 5, 10);
+
 	/*m_2dRenderer->setRenderColour(1, 1, 0, 1);
 	m_2dRenderer->drawBox(mPx, mPy, 40, 40, m_timer);*/
 
@@ -108,7 +119,6 @@ void Application2D::draw() {
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
 	m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
 	m_2dRenderer->drawText(m_font, "Press ESC to quit!", 0, 720 - 64);
-
 	// done drawing sprites
 	m_2dRenderer->end();
 }
