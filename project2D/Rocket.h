@@ -1,13 +1,13 @@
 #pragma once
-
+#include <Vector2.h>
 class Rocket
 {
-	float mX;
-	float mY;
-protected:
-	float mTimer;
 public:
-	Rocket(float x, float y);
+	Vector2 mPos;
+	Vector2 mScale;
+	bool mIsFired;
+	Rocket();
 	~Rocket();
-	void rocketSpeed(float time);
+	Rocket(Vector2 pos);
+	void Update(float deltaTime);
 };

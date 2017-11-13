@@ -1,24 +1,23 @@
 #include "Rocket.h"
-#include <time.h>
 #include "Tank.h"
-#include "Application2D.h"
-Rocket::Rocket(float x, float y)
+#include <Input.h>
+Rocket::Rocket()
 {
-	mX = x;
-	mY = y;
+	mIsFired = false;
 }
-
 
 Rocket::~Rocket()
 {
 }
 
-void Rocket::rocketSpeed(float time)
-{
-	mTimer = 0;
-	mTimer += time;
-	for (int i = 0; i < 1000; i++)
-	{
-		mY + 200.0f * time;
-	}
+Rocket::Rocket(Vector2 pos)
+{	
+	mPos = Vector2(pos.mX, pos.mY);
+	mIsFired = false;
+}
+
+void Rocket::Update(float deltaTime)
+{	
+	if (mIsFired)
+		mPos.mY += 750.0f * deltaTime;
 }

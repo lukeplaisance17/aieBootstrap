@@ -1,16 +1,53 @@
 #include "Tank.h"
 #include <iostream>
+#include <Input.h>
 Tank::Tank()
 {
+	isFired = false;
+	mRoundsLeft = new Rocket[100];
+	for (int i = 0; i < 100; i++)
+	{
+		mRoundsLeft[i] = Rocket(mPos);
+	}
+	mLives = 3;
+	mFiredRound = 0;
 }
+
 Tank::~Tank()
 {
 }
-Tank::Tank(float x, float y)
+
+Tank::Tank(Vector2 pos)
 {
-	mPx = x;
-	mPy = y;
-	mLives = 3;
+	mPos = Vector2(pos.mX, pos.mY);
+	mRoundsLeft = new Rocket[100];
+	for (int i = 0; i < 100; i++)
+	{
+		mRoundsLeft[i] = Rocket(mPos);
+	}
+	mFiredRound = 0;
+}
+
+void Tank::Update(float deltaTime)
+{
+	aie::Input* input = aie::Input::getInstance();
+
+	if (input->isKeyDown(aie::INPUT_KEY_A))
+		 mPos.mX -= 550.0f * deltaTime;
+
+	if (input->isKeyDown(aie::INPUT_KEY_D))
+		mPos.mX += 550.0f * deltaTime;
+
+	if (input->isKeyDown(aie::INPUT_KEY_SPACE))
+	{
+		mRoundsLeft[mFiredRound++];
+		mRoundsLeft[mFiredRound].mIsFired = true;
+	}
+
+	for (int i = 0; i < 100; i++)
+	{		
+		mRoundsLeft[i].Update(deltaTime);
+	}
 }
 
 bool Tank::CheckLives() 
@@ -22,10 +59,10 @@ bool Tank::CheckLives()
 
 }
 
-//int Tank::LifeCounter()
-//{
-//	for (int i = 0; i < 3; i--)
-//	{
-//		std::cout << mLives;
-//	}
-//}
+int Tank::LifeCounter()
+{
+	for (int i = 0; i < 3; i--)
+	{
+		return mLives;
+	}
+}

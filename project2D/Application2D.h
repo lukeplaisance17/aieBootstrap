@@ -2,6 +2,8 @@
 
 #include "Application.h"
 #include "Renderer2D.h"
+#include "Tank.h"
+#include "Rocket.h"
 
 class Application2D : public aie::Application {
 public:
@@ -21,8 +23,10 @@ protected:
 	aie::Texture*		m_texture;
 	aie::Texture*		m_shipTexture;
 	aie::Font*			m_font;
-
+	Tank *mTank;
+	Rocket *mRocket;
+	
 	float m_cameraX, m_cameraY;
-	float mPx, mPy, mY;
+	float mPx, mPy;
 	float m_timer;
 };
