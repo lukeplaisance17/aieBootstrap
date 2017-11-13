@@ -1,5 +1,11 @@
 #include "Tank.h"
 #include <iostream>
+Tank::Tank()
+{
+}
+Tank::~Tank()
+{
+}
 Tank::Tank(float x, float y)
 {
 	mPx = x;
@@ -16,10 +22,10 @@ bool Tank::CheckLives()
 
 }
 
-int Tank::LifeCounter()
-{
-	for (int i = 0; i < 3; i--)
-	{
-		std::cout << mLives;
-	}
-}
+//int Tank::LifeCounter()
+//{
+//	for (int i = 0; i < 3; i--)
+//	{
+//		std::cout << mLives;
+//	}
+//}
