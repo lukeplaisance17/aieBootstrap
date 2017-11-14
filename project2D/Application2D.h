@@ -4,6 +4,7 @@
 #include "Renderer2D.h"
 #include "Tank.h"
 #include "Rocket.h"
+#include "Alien.h"
 
 class Application2D : public aie::Application {
 public:
@@ -25,6 +26,7 @@ protected:
 	aie::Font*			m_font;
 	Tank *mTank;
 	Rocket *mRocket;
+	Alien *mAlien;
 	
 	float m_cameraX, m_cameraY;
 	float mPx, mPy;

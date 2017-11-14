@@ -44,7 +44,7 @@ void Tank::Update(float deltaTime)
 		mRoundsLeft[mFiredRound].Fire(mPos);
 	}
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 500; i++)
 	{		
 		mRoundsLeft[i].Update(deltaTime);
 	}

@@ -162,12 +162,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Application2D.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rocket.cpp" />
     <ClCompile Include="Tank.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alien.h" />
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="Rocket.h" />
     <ClInclude Include="Tank.h" />

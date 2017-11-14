@@ -27,6 +27,7 @@ bool Application2D::startup() {
 	mPy = 40;
 	m_timer = 0;
 	mTank = new Tank(Vector2(650, 40));	
+	mAlien = new Alien(Vector2(650, 700));
 
 	return true;
 }
@@ -46,7 +47,8 @@ void Application2D::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	mTank->Update(deltaTime);	
+	mTank->Update(deltaTime);
+	mAlien->Movement(deltaTime);
 
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
@@ -54,8 +56,8 @@ void Application2D::update(float deltaTime) {
 
 }
 
-void Application2D::draw() {
-
+void Application2D::draw() 
+{
 	// wipe the screen to the background colour
 	clearScreen();
 
@@ -78,6 +80,10 @@ void Application2D::draw() {
 	// Tank
 	m_2dRenderer->setRenderColour(0, 1, 0, 1);
 	m_2dRenderer->drawBox(mTank->mPos.mX, mTank->mPos.mY, 80, 40, 0);
+
+	// Alien
+	m_2dRenderer->setRenderColour(1, 1, 1, 1);
+	m_2dRenderer->drawBox(mAlien->mPos.mX, mAlien->mPos.mY, 15, 15, 0);
 
 	// output some text, uses the last used colour
 	char fps[32];
