@@ -10,4 +10,5 @@ public:
 	~Rocket();
 	Rocket(Vector2 pos);
 	void Update(float deltaTime);
+	void Fire(Vector2 pos);
 };

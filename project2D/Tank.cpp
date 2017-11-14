@@ -4,8 +4,8 @@
 Tank::Tank()
 {
 	isFired = false;
-	mRoundsLeft = new Rocket[100];
-	for (int i = 0; i < 100; i++)
+	mRoundsLeft = new Rocket[500];
+	for (int i = 0; i < 500; i++)
 	{
 		mRoundsLeft[i] = Rocket(mPos);
 	}
@@ -20,8 +20,8 @@ Tank::~Tank()
 Tank::Tank(Vector2 pos)
 {
 	mPos = Vector2(pos.mX, pos.mY);
-	mRoundsLeft = new Rocket[100];
-	for (int i = 0; i < 100; i++)
+	mRoundsLeft = new Rocket[500];
+	for (int i = 0; i < 500; i++)
 	{
 		mRoundsLeft[i] = Rocket(mPos);
 	}
@@ -38,10 +38,10 @@ void Tank::Update(float deltaTime)
 	if (input->isKeyDown(aie::INPUT_KEY_D))
 		mPos.mX += 550.0f * deltaTime;
 
-	if (input->isKeyDown(aie::INPUT_KEY_SPACE))
+	if (input->wasKeyPressed(aie::INPUT_KEY_SPACE))
 	{
 		mRoundsLeft[mFiredRound++];
-		mRoundsLeft[mFiredRound].mIsFired = true;
+		mRoundsLeft[mFiredRound].Fire(mPos);
 	}
 
 	for (int i = 0; i < 100; i++)

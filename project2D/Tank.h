@@ -5,9 +5,9 @@ class Tank
 {
 private:
 	int mLives;
-	Rocket *mRoundsLeft;
 	int mFiredRound;
 public:
+	Rocket *mRoundsLeft;
 	Vector2 mPos;
 	Vector2 mScale;
 	Tank();

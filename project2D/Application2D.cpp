@@ -26,8 +26,7 @@ bool Application2D::startup() {
 	mPx = 650;
 	mPy = 40;
 	m_timer = 0;
-	mTank = new Tank(Vector2(650, 40));
-	mRocket = new Rocket(Vector2(650, 40));
+	mTank = new Tank(Vector2(650, 40));	
 
 	return true;
 }
@@ -47,8 +46,7 @@ void Application2D::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	mTank->Update(deltaTime);
-	mRocket->Update(deltaTime);
+	mTank->Update(deltaTime);	
 
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
@@ -72,9 +70,11 @@ void Application2D::draw() {
 	m_2dRenderer->drawLine(0, 100, 1280, 100, 5, 1);
 
 	// Rocket
-	m_2dRenderer->setRenderColour(1, 1, 1, 1);
-	m_2dRenderer->drawBox(mRocket->mPos.mX, mRocket->mPos.mY, 5, 10, 0);
-
+	for (int i = 0; i < 500; i++) {
+		m_2dRenderer->setRenderColour(1, 1, 1, 1);
+		if(mTank->mRoundsLeft[i].mIsFired)
+			m_2dRenderer->drawBox(mTank->mRoundsLeft[i].mPos.mX, mTank->mRoundsLeft[i].mPos.mY, 5, 10, 0);
+	}
 	// Tank
 	m_2dRenderer->setRenderColour(0, 1, 0, 1);
 	m_2dRenderer->drawBox(mTank->mPos.mX, mTank->mPos.mY, 80, 40, 0);

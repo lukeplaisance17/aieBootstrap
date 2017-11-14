@@ -21,3 +21,9 @@ void Rocket::Update(float deltaTime)
 	if (mIsFired)
 		mPos.mY += 750.0f * deltaTime;
 }
+
+void Rocket::Fire(Vector2 pos)
+{
+	mIsFired = true;
+	mPos = Vector2(pos.mX, pos.mY);
+}
