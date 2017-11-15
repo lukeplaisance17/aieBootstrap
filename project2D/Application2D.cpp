@@ -3,6 +3,7 @@
 #include "Font.h"
 #include "Input.h"
 #include "Tank.h"
+#include "DEFINES.h"
 
 Application2D::Application2D() {
 
@@ -26,8 +27,8 @@ bool Application2D::startup() {
 	mPx = 650;
 	mPy = 40;
 	m_timer = 0;
-	mTank = new Tank(Vector2(650, 40));	
-	mAlien = new Alien(Vector2(650, 700));
+	mTank = new Tank(Vector2(SCREEN_WIDTH / 2, 40));	
+	mAlien = new Alien(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 40));
 
 	return true;
 }
@@ -48,8 +49,9 @@ void Application2D::update(float deltaTime) {
 	aie::Input* input = aie::Input::getInstance();
 
 	mTank->Update(deltaTime);
-	mAlien->Movement(deltaTime);
-
+	mAlien->Update(deltaTime);
+	mAlien->Collision();
+ 
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();

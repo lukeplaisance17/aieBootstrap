@@ -1,5 +1,6 @@
 #include "Alien.h"
 #include "Rocket.h"
+#include "DEFINES.h"
 Alien::Alien()
 {
 }
@@ -11,36 +12,17 @@ Alien::~Alien()
 Alien::Alien(Vector2(pos))
 {
 	mPos = Vector2(pos.mX, pos.mY);
-	moveLeft = false;
-	moveRight = false;
-	moveDown = false;
+	mAliens = new Alien[10];
+	bool moveDown = false;
 }
 
-void Alien::Movement(float deltaTime)
+void Alien::Update(float deltaTime)
 {
-	if (moveLeft) {
-		mPos.mX -= 100.0f * deltaTime;
-	}
-	if (moveRight) {
-		mPos.mX += 100.0 * deltaTime;
-	}
+	
 	if (moveDown) {
-		mPos.mY - +1.0f * deltaTime;
+		mPos.mY -= 3.0f * deltaTime;
 	}
-
-	for (int i = 0; i < 720; i++) 
-	{
-		if (mPos.mX <= 0)
-		{
-			moveRight = true;
-			moveDown = true;
-		}
-		if (mPos.mY >= 720)
-		{
-			moveLeft = true;
-			moveDown = true;
-		}
-	}
+	
 }
 
 bool Alien::Dead()
@@ -59,9 +41,9 @@ void Alien::Collision()
 
 	if (boundaries[0].mX > 1280)
 		collisions[0] = 1; //Right Collision
-	if (boundaries[0].mX < 0)
+	if (boundaries[0].mX < 0 + 5)
 		collisions[1] = 1; //Left Collision
-	if (boundaries[0].mY > 720)
+	if (boundaries[0].mY > 720 - 5)
 		collisions[2] = 1; //Top Collision
 	if (boundaries[0].mY < 0)
 		collisions[3] = 1; //Bottom Collision

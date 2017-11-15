@@ -171,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="Alien.h" />
     <ClInclude Include="Application2D.h" />
+    <ClInclude Include="DEFINES.h" />
     <ClInclude Include="Rocket.h" />
     <ClInclude Include="Tank.h" />
   </ItemGroup>

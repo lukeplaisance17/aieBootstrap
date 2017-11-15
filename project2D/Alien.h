@@ -6,14 +6,14 @@ class Alien
 public:
 	Vector2 mPos;
 	Vector2 mScale;
+	Alien *mAliens;
+	Rocket *mRockets;
 	Alien();
 	~Alien();
 	Alien(Vector2(pos));
-	void Movement(float deltaTime);
+	void Update(float deltaTime);
 	bool Dead();
 	void Collision();
-	bool moveLeft;
-	bool moveRight;
 	bool moveDown;
 
 };
