@@ -55,7 +55,6 @@ void Application2D::update(float deltaTime) {
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
-
 }
 
 void Application2D::draw() 
