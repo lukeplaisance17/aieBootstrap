@@ -18,7 +18,7 @@ bool Application2D::startup() {
 	m_2dRenderer = new aie::Renderer2D();
 
 	m_texture = new aie::Texture("./textures/numbered_grid.tga");
-	m_shipTexture = new aie::Texture("./textures/ship.png");
+	m_alienTexture = new aie::Texture("./textures/Mr.Matt.png");
 
 	m_font = new aie::Font("./font/consolas.ttf", 32);
 	
@@ -28,7 +28,12 @@ bool Application2D::startup() {
 	mPy = 40;
 	m_timer = 0;
 	mTank = new Tank(Vector2(SCREEN_WIDTH / 2, 40));	
-	mAlien = new Alien(Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 40));
+	mAlien = new Alien(Vector2(400, SCREEN_HEIGHT - 40));
+	/*for (int i = 0; i < 10; i++)
+	{
+		mAlien[i] 
+	}
+	*/
 
 	return true;
 }
@@ -37,7 +42,7 @@ void Application2D::shutdown() {
 	
 	delete m_font;
 	delete m_texture;
-	delete m_shipTexture;
+	delete m_alienTexture;
 	delete m_2dRenderer;
 }
 
@@ -50,7 +55,7 @@ void Application2D::update(float deltaTime) {
 
 	mTank->Update(deltaTime);
 	mAlien->Update(deltaTime);
-	mAlien->Collision();
+	mAlien->Lose();
  
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
@@ -85,8 +90,7 @@ void Application2D::draw()
 
 	// Alien
 	m_2dRenderer->setRenderColour(1, 1, 1, 1);
-	m_2dRenderer->drawBox(mAlien->mPos.mX, mAlien->mPos.mY, 15, 15, 0);
-
+	m_2dRenderer->drawSprite(m_alienTexture, mAlien->mPos.mX, mAlien->mPos.mY, 50, 50, 0);
 	// output some text, uses the last used colour
 	char fps[32];
 	sprintf_s(fps, 32, "FPS: %i", getFPS());

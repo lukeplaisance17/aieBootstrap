@@ -22,7 +22,7 @@ protected:
 
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Texture*		m_texture;
-	aie::Texture*		m_shipTexture;
+	aie::Texture*		m_alienTexture;
 	aie::Font*			m_font;
 	Tank *mTank;
 	Rocket *mRocket;

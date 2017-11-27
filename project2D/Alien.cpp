@@ -48,3 +48,12 @@ void Alien::Collision()
 	if (boundaries[0].mY < 0)
 		collisions[3] = 1; //Bottom Collision
 }
+
+bool Alien::Lose()
+{
+	if (mAliens->mPos.mY <= 100)
+	{
+		return false;
+	}
+	return true;
+}
