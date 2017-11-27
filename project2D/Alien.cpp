@@ -9,7 +9,7 @@ Alien::~Alien()
 {
 }
 
-Alien::Alien(Vector2(pos))
+Alien::Alien(Vector2 pos)
 {
 	mPos = Vector2(pos.mX, pos.mY);
 	mAliens = new Alien[10];
@@ -20,7 +20,7 @@ void Alien::Update(float deltaTime)
 {
 	
 	if (moveDown) {
-		mPos.mY -= 3.0f * deltaTime;
+		mPos.mY -= 10.0f * deltaTime;
 	}
 	
 }
