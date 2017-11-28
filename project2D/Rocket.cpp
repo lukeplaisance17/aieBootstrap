@@ -38,6 +38,7 @@ void Rocket::Update(float deltaTime)
 		{
 			Vector2 alienCorners[2] = { Vector2(mAliens[i].mPos.mX + mAliens[i].mScale.mX,mAliens[i].mPos.mY + mAliens[i].mScale.mY),
 			Vector2(mAliens[i].mPos.mX - mAliens[i].mScale.mX,mAliens[i].mPos.mY - mAliens[i].mScale.mY) };
+			
 		}		
 	}
 }

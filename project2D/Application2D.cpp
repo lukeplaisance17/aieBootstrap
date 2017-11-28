@@ -29,12 +29,6 @@ bool Application2D::startup() {
 	m_timer = 0;
 	mTank = new Tank(Vector2(SCREEN_WIDTH / 2, 40));	
 	mAlien = new Alien(Vector2(400, SCREEN_HEIGHT - 40));
-	/*for (int i = 0; i < 10; i++)
-	{
-		mAlien[i] 
-	}
-	*/
-
 	return true;
 }
 
