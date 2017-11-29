@@ -36,10 +36,14 @@ void Rocket::Update(float deltaTime)
 								Vector2(mPos.mX + mScale.mX, mPos.mY - mScale.mY) };
 		for (int i = 0; i < 4; i++)
 		{
-			Vector2 alienCorners[2] = { Vector2(mAliens[i].mPos.mX + mAliens[i].mScale.mX,mAliens[i].mPos.mY + mAliens[i].mScale.mY),
+			Vector2 alienCorners[2] = { 
+			Vector2(mAliens[i].mPos.mX + mAliens[i].mScale.mX,mAliens[i].mPos.mY + mAliens[i].mScale.mY),
 			Vector2(mAliens[i].mPos.mX - mAliens[i].mScale.mX,mAliens[i].mPos.mY - mAliens[i].mScale.mY) };
-			
 		}		
+		if(corners[4] == mAliens->mPos)
+		{
+			mAliens->mIsDead = true;
+		}
 	}
 }
 

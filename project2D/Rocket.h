@@ -8,7 +8,6 @@ public:
 	Alien *mAliens;
 	int mNumAliens;
 	bool mIsFired;
-	bool mIsDead;
 	Rocket();
 	Rocket(Vector2 pos);
 	Rocket(Vector2 pos, Alien *aliens, int numAilens);

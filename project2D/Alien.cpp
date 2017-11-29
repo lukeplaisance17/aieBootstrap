@@ -18,16 +18,16 @@ Alien::Alien(Vector2 pos)
 
 void Alien::Update(float deltaTime)
 {
-	
-	if (moveDown) {
+	if (moveDown) 
+	{
 		mPos.mY -= 10.0f * deltaTime;
 	}
-	
 }
 
-bool Alien::Dead()
+bool Alien::Hit()
 {
-	return false;
+	 mIsDead = false;
+	 return new Vector2;
 }
 
 void Alien::Collision()
@@ -49,11 +49,11 @@ void Alien::Collision()
 		collisions[3] = 1; //Bottom Collision
 }
 
-bool Alien::Lose()
+/*bool Alien::Lose()
 {
 	if (mAliens->mPos.mY <= 100)
 	{
 		return false;
 	}
 	return true;
-}
+}*/

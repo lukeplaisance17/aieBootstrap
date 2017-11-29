@@ -9,10 +9,12 @@ public:
 	Alien();
 	~Alien();
 	Alien(Vector2 pos);
+	int mAlienArray[10];
 	void Update(float deltaTime);
-	bool Dead();
+	bool Hit();
+	bool mIsDead;
 	void Collision();
 	bool moveDown;
-	bool Lose();
+	//bool Lose();
 
 };
