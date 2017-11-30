@@ -47,15 +47,6 @@ void Alien::Collision()
 		collisions[2] = 1; //Top Collision
 	if (boundaries[0].mY < 0)
 		collisions[3] = 1; //Bottom Collision
-
-	int *collide = new int[2]{ 0,0 };
-	Vector2 bound[2];
-	bound[0] = Vector2(mRockets->mPos.mX, mRockets->mPos.mY);
-	bound[1] = Vector2(mAliens->mPos.mX, mAliens->mPos.mY);
-	if (bound[0].mX == bound[1].mX)
-		collide[0] = 1;
-	if (bound[0].mY == bound[1].mY)
-		collide[1] = 1;
 }
 
 /*bool Alien::Lose()
