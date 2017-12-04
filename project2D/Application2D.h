@@ -28,7 +28,7 @@ protected:
 	Tank *mTank;
 	Rocket *mRocket;
 	Alien *mAlien;
-	
+
 	float m_cameraX, m_cameraY;
 	float mPx, mPy;
 	float m_timer;

@@ -12,21 +12,23 @@ Alien::~Alien()
 Alien::Alien(Vector2 pos)
 {
 	mPos = Vector2(pos.mX, pos.mY);
+	mScale = Vector2(25, 25);
 	mAliens = new Alien[10];
+	mIsDead = false;
 	bool moveDown = false;
 }
 
 void Alien::Update(float deltaTime)
 {
-	if (moveDown) 
+	if (moveDown)
 	{
-		mPos.mY -= 10.0f * deltaTime;
+		mPos.mY -= 50.0f * deltaTime;
 	}
 }
 
 bool Alien::Hit()
 {
-	 mIsDead = false;
+	 mIsDead = true;
 	 return new Vector2;
 }
 
@@ -47,22 +49,14 @@ void Alien::Collision()
 		collisions[2] = 1; //Top Collision
 	if (boundaries[0].mY < 0)
 		collisions[3] = 1; //Bottom Collision
-
-	int *collide = new int[2]{ 0,0 };
-	Vector2 bound[2];
-	bound[0] = Vector2(mRockets->mPos.mX, mRockets->mPos.mY);
-	bound[1] = Vector2(mAliens->mPos.mX, mAliens->mPos.mY);
-	if (bound[0].mX == bound[1].mX)
-		collide[0] = 1;
-	if (bound[0].mY == bound[1].mY)
-		collide[1] = 1;
 }
 
-/*bool Alien::Lose()
+bool Alien::Lose()
 {
-	if (mAliens->mPos.mY <= 100)
+	if(mAliens->mPos.mY <= 100)
 	{
-		return false;
+		return 0;
 	}
-	return true;
-}*/
+}
+
+

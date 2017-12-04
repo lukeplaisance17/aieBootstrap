@@ -14,7 +14,7 @@ Application2D::~Application2D() {
 }
 
 bool Application2D::startup() {
-	
+
 	m_2dRenderer = new aie::Renderer2D();
 
 	m_texture = new aie::Texture("./textures/ship.png");
@@ -22,21 +22,21 @@ bool Application2D::startup() {
 	m_missileTexture = new aie::Texture("./textures/missile.png");
 
 	m_font = new aie::Font("./font/consolas.ttf", 32);
-	
+
 	m_cameraX = 0;
 	m_cameraY = 0;
 	m_timer = 0;
-	mTank = new Tank(Vector2(SCREEN_WIDTH / 2, 40));		
+	mTank = new Tank(Vector2(SCREEN_WIDTH / 2, 40));
 	mAlien = new Alien[10];
 	for(int i = 0; i < 10; i++)
 	{
-		mAlien = new Alien(Vector2(400, SCREEN_HEIGHT - 40));
+		mAlien[i] = Alien(Vector2(400 + (i * 75), SCREEN_HEIGHT - 40));
 	}
 	return true;
 }
 
 void Application2D::shutdown() {
-	
+
 	delete m_font;
 	delete m_texture;
 	delete m_alienTexture;
@@ -50,20 +50,19 @@ void Application2D::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	mTank->Update(deltaTime);
+	mTank->Update(deltaTime, mAlien);
 	for(int i = 0; i < 10; i++)
 	{
 		mAlien[i].Update(deltaTime);
-		//mAlien->Lose();
-		mAlien[i].Hit();
+		mAlien->Lose();
 	}
-	
+
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
 		quit();
 }
 
-void Application2D::draw() 
+void Application2D::draw()
 {
 	// wipe the screen to the background colour
 	clearScreen();
@@ -82,7 +81,8 @@ void Application2D::draw()
 	for (int i = 0; i < 500; i++) {
 		m_2dRenderer->setRenderColour(1, 1, 1, 1);
 		if(mTank->mRoundsLeft[i].mIsFired)
-			m_2dRenderer->drawSprite(m_missileTexture, mTank->mRoundsLeft[i].mPos.mX, mTank->mRoundsLeft[i].mPos.mY, 15, 40, 0);
+			m_2dRenderer->drawSprite(m_missileTexture, mTank->mRoundsLeft[i].mPos.mX,
+			mTank->mRoundsLeft[i].mPos.mY, 15, 40, 0);
 	}
 	// Tank
 	m_2dRenderer->setRenderColour(1, 1, 1, 1);
@@ -94,7 +94,7 @@ void Application2D::draw()
 		if (!mAlien[i].mIsDead)
 		{
 			m_2dRenderer->setRenderColour(1, 1, 1, 1);
-			m_2dRenderer->drawSprite(m_alienTexture, mAlien->mPos.mX, mAlien->mPos.mY, 50, 50, 0);
+			m_2dRenderer->drawSprite(m_alienTexture, mAlien[i].mPos.mX, mAlien[i].mPos.mY, 50, 50, 0);
 		}
 	}
 	// output some text, uses the last used colour

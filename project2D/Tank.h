@@ -14,7 +14,7 @@ public:
 	~Tank();
 	Tank(Vector2 pos);
 	bool isFired;
-	void Update(float deltaTime);
+	void Update(float deltaTime, Alien *alien);
 	bool CheckLives();
 	int LifeCounter();
 };

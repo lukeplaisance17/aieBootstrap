@@ -12,8 +12,10 @@ Rocket::~Rocket()
 Rocket::Rocket(Vector2 pos, Alien *aliens, int numAilens)
 {
 	this->mPos = Vector2(pos.mX, pos.mY);
+	this->mScale = Vector2(7.5, 20);
 	this->mAliens = aliens;
 	this->mNumAliens = numAilens;
+	mIsFired = false;
 }
 
 Rocket::Rocket(Vector2 pos)
@@ -22,8 +24,8 @@ Rocket::Rocket(Vector2 pos)
 	mIsFired = false;
 }
 
-void Rocket::Update(float deltaTime)
-{	
+void Rocket::Update(float deltaTime, Alien *aliens)
+{
 	if (mIsFired)
 		mPos.mY += 710.0f * deltaTime;
 
@@ -34,15 +36,20 @@ void Rocket::Update(float deltaTime)
 								Vector2(mPos.mX - mScale.mX, mPos.mY - mScale.mY),
 								Vector2(mPos.mX - mScale.mX, mPos.mY + mScale.mY),
 								Vector2(mPos.mX + mScale.mX, mPos.mY - mScale.mY) };
-		for (int i = 0; i < 4; i++)
+		if (aliens[i].mIsDead)
+			continue;
+		for (int j = 0; j < 4; j++)
 		{
-			Vector2 alienCorners[2] = { 
-			Vector2(mAliens[i].mPos.mX + mAliens[i].mScale.mX,mAliens[i].mPos.mY + mAliens[i].mScale.mY),
-			Vector2(mAliens[i].mPos.mX - mAliens[i].mScale.mX,mAliens[i].mPos.mY - mAliens[i].mScale.mY) };
-		}		
-		if(corners[4] == mAliens->mPos)
-		{
-			mAliens->mIsDead = true;
+
+			Vector2 alienCorners[2] = {
+			Vector2(aliens[i].mPos.mX + aliens[i].mScale.mX,aliens[i].mPos.mY + aliens[i].mScale.mY), //topR
+			Vector2(aliens[i].mPos.mX - aliens[i].mScale.mX,aliens[i].mPos.mY - aliens[i].mScale.mY) }; //botL
+			if(corners[j].mX >= alienCorners[1].mX && corners[j].mX <= alienCorners[0].mX)
+			{
+				if (corners[j].mY >= alienCorners[1].mY && corners[j].mY <= alienCorners[0].mY)
+					aliens[i].Hit();
+			}
+
 		}
 	}
 }

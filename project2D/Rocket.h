@@ -11,7 +11,7 @@ public:
 	Rocket();
 	Rocket(Vector2 pos);
 	Rocket(Vector2 pos, Alien *aliens, int numAilens);
-	~Rocket();	
-	void Update(float deltaTime);
+	~Rocket();
+	void Update(float deltaTime, Alien *aliens);
 	void Fire(Vector2 pos);
 };

@@ -7,7 +7,7 @@ Tank::Tank()
 	mRoundsLeft = new Rocket[500];
 	for (int i = 0; i < 500; i++)
 	{
-		mRoundsLeft[i] = Rocket(mPos);
+		mRoundsLeft[i] = Rocket(mPos,nullptr, 10);
 	}
 	mLives = 3;
 	mFiredRound = 0;
@@ -23,12 +23,12 @@ Tank::Tank(Vector2 pos)
 	mRoundsLeft = new Rocket[500];
 	for (int i = 0; i < 500; i++)
 	{
-		mRoundsLeft[i] = Rocket(mPos);
+		mRoundsLeft[i] = Rocket(mPos, nullptr, 10);
 	}
 	mFiredRound = 0;
 }
 
-void Tank::Update(float deltaTime)
+void Tank::Update(float deltaTime, Alien *aliens)
 {
 	aie::Input* input = aie::Input::getInstance();
 
@@ -45,12 +45,12 @@ void Tank::Update(float deltaTime)
 	}
 
 	for (int i = 0; i < 500; i++)
-	{		
-		mRoundsLeft[i].Update(deltaTime);
+	{
+		mRoundsLeft[i].Update(deltaTime, aliens);
 	}
 }
 
-bool Tank::CheckLives() 
+bool Tank::CheckLives()
 {
 	if (mLives > 0)
 		return true;
