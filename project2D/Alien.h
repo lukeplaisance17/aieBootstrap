@@ -15,6 +15,5 @@ public:
 	bool mIsDead;
 	void Collision();
 	bool moveDown;
-	bool Lose();
 
 };

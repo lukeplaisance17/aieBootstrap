@@ -22,7 +22,7 @@ void Alien::Update(float deltaTime)
 {
 	if (moveDown)
 	{
-		mPos.mY -= 50.0f * deltaTime;
+		mPos.mY -= 25.0f * deltaTime;
 	}
 }
 
@@ -49,14 +49,6 @@ void Alien::Collision()
 		collisions[2] = 1; //Top Collision
 	if (boundaries[0].mY < 0)
 		collisions[3] = 1; //Bottom Collision
-}
-
-bool Alien::Lose()
-{
-	if(mAliens->mPos.mY <= 100)
-	{
-		return 0;
-	}
 }
 
 

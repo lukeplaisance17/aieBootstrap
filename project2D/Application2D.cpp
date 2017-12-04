@@ -18,14 +18,19 @@ bool Application2D::startup() {
 	m_2dRenderer = new aie::Renderer2D();
 
 	m_texture = new aie::Texture("./textures/ship.png");
-	m_alienTexture = new aie::Texture("./textures/Mr.Matt.png");
+	m_alienTexture = new aie::Texture("./textures/MrMatt.png");
 	m_missileTexture = new aie::Texture("./textures/missile.png");
+	m_winTexture = new aie::Texture("./textures/youWin.png");
+	m_orbitTexture = new aie::Texture("./textures/orbit.png");
+	m_loseTexture = new aie::Texture("./textures/youLose.png");
 
 	m_font = new aie::Font("./font/consolas.ttf", 32);
 
 	m_cameraX = 0;
 	m_cameraY = 0;
 	m_timer = 0;
+	mWin = false;
+	mLose = false;
 	mTank = new Tank(Vector2(SCREEN_WIDTH / 2, 40));
 	mAlien = new Alien[10];
 	for(int i = 0; i < 10; i++)
@@ -51,11 +56,18 @@ void Application2D::update(float deltaTime) {
 	aie::Input* input = aie::Input::getInstance();
 
 	mTank->Update(deltaTime, mAlien);
+	int dead = 0;
 	for(int i = 0; i < 10; i++)
 	{
 		mAlien[i].Update(deltaTime);
-		mAlien->Lose();
+		if (mAlien[i].mIsDead)
+			dead++;
 	}
+
+	if (dead >= 10)
+		mWin = true;
+	if (mAlien->mPos.mY <= 120)
+		mLose = true;
 
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
@@ -73,9 +85,13 @@ void Application2D::draw()
 	// begin drawing sprites
 	m_2dRenderer->begin();
 
+	// Orbit
+	m_2dRenderer->setRenderColour(1, 1, 1, 1);
+	m_2dRenderer->drawSprite(m_orbitTexture, 640, 360, 1280, 720, 0);
+
 	// Shield
 	m_2dRenderer->setRenderColour(0, 1, 1, 1);
-	m_2dRenderer->drawLine(0, 100, 1280, 100, 5, 1);
+	m_2dRenderer->drawLine(0, 100, 1280, 100, 5, 0);
 
 	// Rocket
 	for (int i = 0; i < 500; i++) {
@@ -97,6 +113,17 @@ void Application2D::draw()
 			m_2dRenderer->drawSprite(m_alienTexture, mAlien[i].mPos.mX, mAlien[i].mPos.mY, 50, 50, 0);
 		}
 	}
+	if(mWin)
+	{		//Win screen
+		m_2dRenderer->setRenderColour(1, 1, 1, 1);
+		m_2dRenderer->drawSprite(m_winTexture, 640, 360, 1280, 720, 0);
+	}
+	if(mLose)
+	{		//Lose screen
+		m_2dRenderer->setRenderColour(1, 1, 1, 1);
+		m_2dRenderer->drawSprite(m_loseTexture, 640, 360, 1280, 720, 0);
+	}
+
 	// output some text, uses the last used colour
 	char fps[32];
 	sprintf_s(fps, 32, "FPS: %i", getFPS());
