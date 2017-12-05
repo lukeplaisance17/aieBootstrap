@@ -31,6 +31,7 @@ bool Application2D::startup() {
 	m_timer = 0;
 	mWin = false;
 	mLose = false;
+	mGameover = false;
 	mTank = new Tank(Vector2(SCREEN_WIDTH / 2, 40));
 	mAlien = new Alien[10];
 	for(int i = 0; i < 10; i++)
@@ -64,8 +65,10 @@ void Application2D::update(float deltaTime) {
 			dead++;
 	}
 
-	if (dead >= 10)
+	if (dead >= 10) {
 		mWin = true;
+		mGameover = true;
+	}
 	if (mAlien->mPos.mY <= 120)
 		mLose = true;
 

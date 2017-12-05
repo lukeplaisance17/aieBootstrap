@@ -9,7 +9,6 @@ Tank::Tank()
 	{
 		mRoundsLeft[i] = Rocket(mPos,nullptr, 10);
 	}
-	mLives = 3;
 	mFiredRound = 0;
 }
 
@@ -47,22 +46,5 @@ void Tank::Update(float deltaTime, Alien *aliens)
 	for (int i = 0; i < 500; i++)
 	{
 		mRoundsLeft[i].Update(deltaTime, aliens);
-	}
-}
-
-bool Tank::CheckLives()
-{
-	if (mLives > 0)
-		return true;
-	else
-		return false;
-
-}
-
-int Tank::LifeCounter()
-{
-	for (int i = 0; i < 3; i--)
-	{
-		return mLives;
 	}
 }
