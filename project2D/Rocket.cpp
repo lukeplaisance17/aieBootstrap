@@ -3,6 +3,8 @@
 Rocket::Rocket()
 {
 	mIsFired = false;
+	mfirstRocket = NULL;
+	mlastRocket = NULL;
 }
 
 Rocket::~Rocket()
@@ -16,6 +18,17 @@ Rocket::Rocket(Vector2 pos, Alien *aliens, int numAilens)
 	this->mAliens = aliens;
 	this->mNumAliens = numAilens;
 	mIsFired = false;
+
+	if(mfirstRocket == NULL)
+	{
+		mfirstRocket = new NodeType<int>;
+		mlastRocket = mfirstRocket;
+		mlastRocket->link = NULL;
+	}
+	else
+	{
+		mInsert->InsertLast(1);
+	}
 }
 
 Rocket::Rocket(Vector2 pos)

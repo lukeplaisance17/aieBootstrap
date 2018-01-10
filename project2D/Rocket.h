@@ -1,5 +1,8 @@
 #pragma once
 #include "Alien.h"
+#include <LinkListType.h>
+#include <LinkedListIterator.h>
+#include <NodeType.h>
 class Rocket
 {
 public:
@@ -8,6 +11,11 @@ public:
 	Alien *mAliens; //Reference to the Alien class
 	int mNumAliens; //Number for the amount of aliens
 	bool mIsFired; //Condition to check if a rocket was fired
+	bool mDead; //lets the render loop know if a rocket needs to be deleted
+	LinkListIterator<int> *mNext; //next rocket(node) in the list
+	LinkListType<int> *mInsert;
+	NodeType<int> *mfirstRocket; //first on the list
+	NodeType<int> *mlastRocket; //last on the list
 	/*Prototype: Rocket()
 	Argument : none
 	Description : makes an instance of the Rocket class
